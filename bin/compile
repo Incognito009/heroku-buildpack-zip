@@ -20,31 +20,31 @@ mktmpdir() {
 
 BUILD_DIR=$1
 CACHE_DIR=$2
-VERSION="60"
-UNZIP_BUILD="$(mktmpdir unzip)"
-INSTALL_DIR="$BUILD_DIR/.heroku/vendor/unzip"
-PROFILE_PATH="$BUILD_DIR/.profile.d/unzip.sh"
+VERSION="30"
+ZIP_BUILD="$(mktmpdir zip_build)"
+INSTALL_DIR="$BUILD_DIR/.heroku/vendor/zip"
+PROFILE_PATH="$BUILD_DIR/.profile.d/zip.sh"
 
 mkdir -p $INSTALL_DIR
 mkdir -p $(dirname $PROFILE_PATH)
 mkdir -p $CACHE_DIR
 
 if [ ! -f $CACHE_DIR/unzip_$VERSION ]; then
-	echo "Fetching and installing unzip" | indent
-	cd $UNZIP_BUILD
-	curl -OL "http://downloads.sourceforge.net/infozip/unzip$VERSION.tar.gz"
-	tar zxvf "unzip$VERSION.tar.gz"
-	cd "unzip$VERSION"
+	echo "Fetching and installing zip" | indent
+	cd $ZIP_BUILD
+	curl -OL "http://downloads.sourceforge.net/infozip/zip$VERSION.tar.gz"
+	tar zxvf "zip$VERSION.tar.gz"
+	cd "zip$VERSION"
 	cp unix/Makefile .
 	make generic
-	cp "$UNZIP_BUILD/unzip$VERSION/unzip" $CACHE_DIR/unzip_$VERSION 
-	cp "$UNZIP_BUILD/unzip$VERSION/unzip" $INSTALL_DIR/
+	cp "$UNZIP_BUILD/zip$VERSION/zip" $CACHE_DIR/zip_$VERSION 
+	cp "$UNZIP_BUILD/zip$VERSION/zip" $INSTALL_DIR/
 else
 	echo "Installing unzip from cache" | indent
-	cp $CACHE_DIR/unzip_$VERSION  $INSTALL_DIR/unzip 
+	cp $CACHE_DIR/zip_$VERSION  $INSTALL_DIR/zip 
 fi
 
-set-env PATH '/app/.heroku/vendor/unzip/:$PATH'
+set-env PATH '/app/.heroku/vendor/zip/:$PATH'
 
 echo "Done" | indent
 
