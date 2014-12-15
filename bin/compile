@@ -40,7 +40,7 @@ if [ ! -f $CACHE_DIR/unzip_$VERSION ]; then
 	cp "$UNZIP_BUILD/zip$VERSION/zip" $CACHE_DIR/zip_$VERSION 
 	cp "$UNZIP_BUILD/zip$VERSION/zip" $INSTALL_DIR/
 else
-	echo "Installing unzip from cache" | indent
+	echo "Installing zip from cache" | indent
 	cp $CACHE_DIR/zip_$VERSION  $INSTALL_DIR/zip 
 fi
 
