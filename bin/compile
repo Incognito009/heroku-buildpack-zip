@@ -29,7 +29,7 @@ mkdir -p $INSTALL_DIR
 mkdir -p $(dirname $PROFILE_PATH)
 mkdir -p $CACHE_DIR
 
-if [ ! -f $CACHE_DIR/unzip_$VERSION ]; then
+if [ ! -f $CACHE_DIR/zip_$VERSION ]; then
 	echo "Fetching and installing zip" | indent
 	cd $ZIP_BUILD
 	curl -OL "http://downloads.sourceforge.net/infozip/zip$VERSION.tar.gz"
@@ -37,8 +37,8 @@ if [ ! -f $CACHE_DIR/unzip_$VERSION ]; then
 	cd "zip$VERSION"
 	cp unix/Makefile .
 	make generic
-	cp "$UNZIP_BUILD/zip$VERSION/zip" $CACHE_DIR/zip_$VERSION 
-	cp "$UNZIP_BUILD/zip$VERSION/zip" $INSTALL_DIR/
+	cp "$ZIP_BUILD/zip$VERSION/zip" $CACHE_DIR/zip_$VERSION 
+	cp "$ZIP_BUILD/zip$VERSION/zip" $INSTALL_DIR/
 else
 	echo "Installing zip from cache" | indent
 	cp $CACHE_DIR/zip_$VERSION  $INSTALL_DIR/zip 
